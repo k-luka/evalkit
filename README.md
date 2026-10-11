@@ -13,6 +13,14 @@ evalkit run --data data/arith.jsonl --model baseline --n 100 --seed 0
 | baseline | arith | 100 | 0.610    | [0.510, 0.700] |
 ```
 
+## Experiments
+
+`data/arith_long.jsonl` asks the same arithmetic as word problems with extra distractor text, to see whether accuracy holds up as prompts get longer.
+
+```bash
+evalkit run --data data/arith_long.jsonl --n 100 --seed 0
+```
+
 ## Layout
 
 - `evalkit/datasets.py`: load JSONL benchmarks and subsample them
