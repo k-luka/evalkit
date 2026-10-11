@@ -20,6 +20,7 @@ def main(argv: list[str] | None = None) -> None:
     run.add_argument("--n", type=int, default=None, help="number of examples (default: all)")
     run.add_argument("--seed", type=int, default=0)
     run.add_argument("--failures", help="write failed examples to this JSON file")
+    run.add_argument("--wandb-project", help="also log results to this W&B project")
 
     args = parser.parse_args(argv)
     result = run_eval(get_model(args.model), args.data, n=args.n, seed=args.seed)
@@ -27,6 +28,10 @@ def main(argv: list[str] | None = None) -> None:
     if args.failures:
         with open(args.failures, "w") as f:
             json.dump(result.failures, f, indent=2)
+    if args.wandb_project:
+        from evalkit.loggers import log_wandb
+
+        log_wandb(result, project=args.wandb_project)
 
 
 if __name__ == "__main__":

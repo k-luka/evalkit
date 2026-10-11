@@ -11,6 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+wandb = ["wandb>=0.17"]
 
 [project.scripts]
 evalkit = "evalkit.cli:main"
